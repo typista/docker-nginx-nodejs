@@ -1,6 +1,11 @@
 #!/bin/sh
+USER=typista
 FULLPATH=$(cd `dirname $0`; pwd)/`basename $0`
 DIR=`dirname $FULLPATH`
-TAG=`basename $DIR`
-docker build -t typista/docker:$TAG .
-
+REPO=`basename $DIR`
+REPO=`echo $REPO | sed -r "s/docker\-//g"`
+IMAGE=$USER/$REPO
+if [ "$1" != "" ];then
+    IMAGE=$IMAGE:$1
+fi
+docker build -t $IMAGE .
