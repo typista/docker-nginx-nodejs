@@ -24,8 +24,7 @@ if [ $ISDEFAULT -eq 0 ]; then
 	sed -ri "s/__HOSTNAME__/$HOSTNAME/g" $NGINX_CONF
 fi
 chown -R nginx: $LOG
-
-/etc/init.d/php-fastcgi start
-#/usr/local/nginx/sbin/nginx -g "daemon off;"
+crontab /root/crontab.txt
 /etc/init.d/nginx start
+/etc/init.d/crond start
 /usr/bin/tail -f /dev/null
