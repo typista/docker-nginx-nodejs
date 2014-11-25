@@ -9,8 +9,12 @@ if [ ! -e $HTML ]; then
 	cd $HTML
 	cp /tmp/app.js $HTML/
 	npm install
-	/usr/bin/forever start app.js
 fi
+APP=app.js
+if [ -f $HTML/index.js ]; then
+	APP=index.js
+fi
+/usr/bin/forever start $APP
 chown -R nginx: $ROOT
 
 # mount:/var/log/nginx
