@@ -47,20 +47,21 @@ if [ $ISDEFAULT -eq 0 ]; then
 	sed -ri "s/__HOSTNAME__/$HOSTNAME/g" $NGINX_CONF
 	sed -ri "s/__FQDN__/$FQDN/g" $NGINX_CONF
 fi
+CRON_SHELL=/root/export/start.sh
+if [ ! -f $CRON_SHELL ]; then
+	wget $URL_GIT/start.sh -O $CRON_SHELL
+fi
 MONITOR_NGINX=/root/export/monitor_nginx.sh
 if [ ! -f $MONITOR_NGINX ]; then
 	wget $URL_GIT/monitor_nginx.sh -O $MONITOR_NGINX
 	chmod +x $MONITOR_NGINX
+	echo $MONITOR_NGINX >> $CRON_SHELL
 fi
 MONITOR_NODE=/root/export/monitor_node.sh
 if [ ! -f $MONITOR_NODE ]; then
 	wget $URL_GIT/monitor_node.sh -O $MONITOR_NODE
 	chmod +x $MONITOR_NODE
-fi
-CRON_SHELL=/root/export/start.sh
-if [ ! -f $CRON_SHELL ]; then
-	wget $URL_GIT/start.sh -O $CRON_SHELL
-	echo "/root/export/monitor_nginx.sh" >> $CRON_SHELL
+	echo $MONITOR_NODE >> $CRON_SHELL
 fi
 CRON_TAB=/root/export/crontab.txt
 if [ ! -f $CRON_TAB ];then
