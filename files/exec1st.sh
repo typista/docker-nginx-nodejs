@@ -52,6 +52,11 @@ if [ ! -f $MONITOR_NGINX ]; then
 	wget $URL_GIT/monitor_nginx.sh -O $MONITOR_NGINX
 	chmod +x $MONITOR_NGINX
 fi
+MONITOR_NODE=/root/export/monitor_node.sh
+if [ ! -f $MONITOR_NODE ]; then
+	wget $URL_GIT/monitor_node.sh -O $MONITOR_NODE
+	chmod +x $MONITOR_NODE
+fi
 CRON_SHELL=/root/export/start.sh
 if [ ! -f $CRON_SHELL ]; then
 	wget $URL_GIT/start.sh -O $CRON_SHELL
