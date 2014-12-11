@@ -1,5 +1,5 @@
 #!/bin/bash
-REPO=docker-nodejs
+REPO=docker-nginx-nodejs
 export GIT_URL=https://raw.githubusercontent.com/typista/$REPO/master/files
 LOCALTIME=/etc/localtime
 if [ ! -L $LOCALTIME ]; then
