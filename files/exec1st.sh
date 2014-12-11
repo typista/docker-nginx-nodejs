@@ -51,17 +51,24 @@ CRON_SHELL=/root/export/start.sh
 if [ ! -f $CRON_SHELL ]; then
 	wget $URL_GIT/start.sh -O $CRON_SHELL
 fi
+if [ ! -x $CRON_SHELL ]; then
+	chmod +x $CRON_SHELL
+fi
 MONITOR_NGINX=/root/export/monitor_nginx.sh
 if [ ! -f $MONITOR_NGINX ]; then
 	wget $URL_GIT/monitor_nginx.sh -O $MONITOR_NGINX
-	chmod +x $MONITOR_NGINX
 	echo $MONITOR_NGINX >> $CRON_SHELL
+fi
+if [ ! -x $MONITOR_NGINX ]; then
+	chmod +x $MONITOR_NGINX
 fi
 MONITOR_NODE=/root/export/monitor_node.sh
 if [ ! -f $MONITOR_NODE ]; then
 	wget $URL_GIT/monitor_node.sh -O $MONITOR_NODE
-	chmod +x $MONITOR_NODE
 	echo $MONITOR_NODE >> $CRON_SHELL
+fi
+if [ ! -x $MONITOR_NODE ]; then
+	chmod +x $MONITOR_NODE
 fi
 CRON_TAB=/root/export/crontab.txt
 if [ ! -f $CRON_TAB ];then
