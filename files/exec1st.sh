@@ -5,8 +5,8 @@ ROOT=/var/www/$HOSTNAME
 HTML=$ROOT/html
 if [ ! -e $HTML ]; then
 	mkdir -p $HTML
-	wget https://raw.githubusercontent.com/typista/docker-nginx-nodejs/master/files/package.json -O $HTML/package.json
-	wget https://raw.githubusercontent.com/typista/docker-nginx-nodejs/master/files/app.js -O $HTML/app.js
+	wget $GIT_URL/package.json -O $HTML/package.json
+	wget $GIT_URL/app.js -O $HTML/app.js
     cd $HTML
     npm install
 fi
